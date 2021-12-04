@@ -1,5 +1,7 @@
 # veejay
 
+[![build](https://github.com/jrbury/veejay/actions/workflows/build.yml/badge.svg)](https://github.com/jrbury/veejay/actions)
+
 Veejay (/ˈvējā/) is a toy library for editing videos
 
 ### Inspiration
