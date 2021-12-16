@@ -3,23 +3,23 @@ use std::ffi::CString;
 use ffmpeg::format::input;
 use ffmpeg::sys::av_dump_format;
 
-pub struct Clip<'a> {
-    path: &'a str,
+pub struct Clip {
+    path: String,
     start_index: i64,
     end_index: i64,
 }
 
-impl<'a> Clip<'a> {
-    pub fn new(path: &'a str) -> Self {
-        return Clip {
-            path: path.clone(),
+impl Clip {
+    pub fn new(path: &str) -> Self {
+        Clip {
+            path: String::from(path),
             start_index: 0,
             end_index: input(&path.to_owned()).unwrap().duration(),
-        };
+        }
     }
 
     pub fn dump_format(&mut self) {
-        let url = CString::new(self.path).unwrap();
+        let url = CString::new(self.path.as_str()).unwrap();
         unsafe {
             av_dump_format(
                 input(&self.path.to_owned()).unwrap().as_mut_ptr(),
